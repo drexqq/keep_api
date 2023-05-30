@@ -1,9 +1,7 @@
+# -*- coding: utf-8 -*-
 from pydantic import BaseModel, Field
 
-from app.domain.exceptions import (
-    SpotNotFoundError,
-    SpotsNotFoundError,
-)
+from app.api.exceptions.spot.spot_exception import SpotNotFoundError, SpotsNotFoundError
 
 class ErrorMessageSpotNotFound(BaseModel):
     detail: str = Field(example=SpotNotFoundError.message)

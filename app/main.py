@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.util.singleton import singleton
 from app.config import configs
 from app.config.container import Container
-from app.presentation.endpoints import routers as routers
+from app.api import routers as routers
 from app.config.database import MongoDB
 
 
@@ -43,4 +43,3 @@ container = app_creator.container
 
 app.add_event_handler("startup", db.connect)
 app.add_event_handler("shutdown", db.close)
-

@@ -4,16 +4,16 @@ from dependency_injector.wiring import Provide, inject
 
 from app.config.container import Container
 
-from app.presentation.exceptions import (
+from app.api.exceptions.spot import (
     ErrorMessageSpotNotFound,
     ErrorMessageSpotsNotFound
 )
 
-from app.presentation.models import (
-    GetSpotModel
+from app.model.schema.spot import (
+    GetSpotListModel
 )
 
-from app.domain.services import (
+from app.service.spot_service import (
     SpotService
 )
 
@@ -21,7 +21,7 @@ router = APIRouter(prefix="/spot", tags=["spot"])
 
 @router.get(
     "",
-    # response_model=List[GetSpotModel],
+    # response_model=List[GetSpotListModel],
     # status_code=status.HTTP_200_OK,
     # responses={
     #     status.HTTP_404_NOT_FOUND: {
@@ -34,5 +34,5 @@ async def get_spots(
     service: SpotService = Depends(Provide[Container.spot_service]),
 ):
     """Get a list of spots."""
-    service.get_spots()
-    return {"asdasd":"asldkjaslkj"}
+    spots = await service.get_spots()
+    return {"data": spots}

@@ -1,7 +1,17 @@
 from contextlib import AbstractContextManager
 from typing import Callable
 from motor.motor_asyncio import AsyncIOMotorClient
-from odmantic import AIOEngine
+from odmantic import AIOEngine, Model
+
+from app.model.domain.spot import Spot
+
+
+from odmantic import AIOEngine, Model
+
+
+class Player(Model):
+    name: str
+    game: str
 
 class SpotRepository():
     def __init__(
@@ -12,6 +22,6 @@ class SpotRepository():
         self.client = client
         self.engine = engine
 
-    def get_all(self):
-        return "HI"
+    async def get_all(self):
+        return await self.engine.find(Spot, sort=Spot.registed_at)
         

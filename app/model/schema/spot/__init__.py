@@ -1,0 +1,1 @@
+from app.model.schema.spot.get_spot_list import GetSpotListModel

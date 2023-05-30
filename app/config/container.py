@@ -2,14 +2,14 @@ from dependency_injector import containers, providers
 
 from app.config import configs
 from app.config.database import MongoDB
-from app.infrastructure.repository import *
-from app.domain.services import *
+from app.repository import *
+from app.service import *
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         modules=[
-            "app.presentation.endpoints.spot",
-            "app.presentation.endpoints.user",
+            "app.api.routes.spot",
+            "app.api.routes.user",
         ]
     )
     db = providers.Singleton(MongoDB, db_url=configs.DATABASE_URI)

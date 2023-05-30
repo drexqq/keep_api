@@ -3,8 +3,8 @@ from typing import List
 from pydantic import BaseModel, Field
 from app.config import configs
 
-class GetSpotModel(BaseModel):
-    """GetSpotModel represents data structure as a get model."""
+class GetSpotListModel(BaseModel):
+    """GetSpotListModel represents data structure as a get model."""
     id: str = Field(example="vytxeTZskVKR7C7WgdSP3d")
     title: str = Field(example="보쌈정식 줜맛")
     category: str = Field(example="식당")
