@@ -1,6 +1,5 @@
 from datetime import datetime
 from odmantic import Model
-
 from typing import List
 
 class Spot(Model):
@@ -8,6 +7,7 @@ class Spot(Model):
     category: str
     address: str
     coordinate: List[float]
+    images: List[str]
     keeped: bool
     liked: int
     rate: float

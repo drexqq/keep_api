@@ -6,3 +6,6 @@ class SpotService():
     
     async def get_spots(self):
         return await self.spot_repository.get_all()
+
+    async def get_spot(self, id: str):
+        return await self.spot_repository.get_one(id)
