@@ -1,1 +1,0 @@
-from app.api.exceptions.spot.spot_exception_msg import ErrorMessageSpotNotFound, ErrorMessageSpotsNotFound

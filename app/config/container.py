@@ -2,8 +2,10 @@ from dependency_injector import containers, providers
 
 from app.config import configs
 from app.config.database import MongoDB
-from app.repository import *
-from app.service import *
+from app.domain.spot.spot_repository import SpotRepository
+from app.domain.spot.spot_service import SpotService
+from app.domain.user.user_repository import UserRepository
+from app.domain.user.user_service import UserService
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(

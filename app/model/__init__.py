@@ -1,1 +1,0 @@
-from app.model.schema.spot import *

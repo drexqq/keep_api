@@ -1,11 +1,16 @@
 import os
-from typing import List
+
+import pydantic
+from bson.objectid import ObjectId
 from dotenv import load_dotenv
 from pydantic import BaseSettings
 
+# pydantic ObjectId setting
+pydantic.json.ENCODERS_BY_TYPE[ObjectId] = str
+
 load_dotenv()
 
-ENV: str = ""
+ENV: str
 class Configs(BaseSettings):
     # base
     ENV: str = os.getenv("ENV", "dev")
@@ -22,7 +27,7 @@ class Configs(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30  # 60 minutes * 24 hours * 30 days = 30 days
 
     # CORS
-    BACKEND_CORS_ORIGINS: List[str] = ["*"]
+    BACKEND_CORS_ORIGINS: list[str] = ["*"]
 
     # database
     DB_ENGINE: str = os.getenv("DB_ENGINE", "mongodb+srv")
