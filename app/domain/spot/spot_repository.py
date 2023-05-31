@@ -17,8 +17,11 @@ class SpotRepository():
         self.engine = engine
 
     async def get_all(self) -> Union[list[Spot], list]:
-        return await self.engine.find(Spot, sort=Spot.created_at, limit=10)
+        return await self.engine.find(Spot, sort=Spot.created_at)
 
     async def get_one(self, id) -> Union[Spot, None]:
         return await self.engine.find_one(Spot, Spot.id == ObjectId(id))
+
+    async def create(self, spot: Spot) -> Spot:
+        return await self.engine.save(spot)
         

@@ -1,14 +1,17 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from starlette.middleware.cors import CORSMiddleware
 
-from app.util.singleton import singleton
+from app.api import routers as routers
 from app.config import configs
 from app.config.container import Container
-from app.api import routers as routers
 from app.config.database import MongoDB
-
+from app.util.singleton import singleton
 
 app = FastAPI()
+
+
 @singleton
 class AppCreator:
     def __init__(self):
@@ -28,11 +31,6 @@ class AppCreator:
             allow_methods=["*"],
             allow_headers=["*"],
         )
-
-        # set routes
-        # @self.app.get("/")
-        # def ping():
-        #     return "pong"
 
         self.app.include_router(routers)
 
